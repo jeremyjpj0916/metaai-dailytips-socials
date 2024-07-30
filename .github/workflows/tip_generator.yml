@@ -1,7 +1,8 @@
 name: Tip Generator
 on:
-  schedule:
-  - cron: 0 8 * * *
+  # Allows you to run this workflow manually from the Actions tab on demand
+  workflow_dispatch:
+
 jobs:
   generate-tip:
     runs-on: ubuntu-latest
