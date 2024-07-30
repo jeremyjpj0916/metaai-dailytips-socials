@@ -10,13 +10,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Install dependencies
+          cache: 'pip' # caching pip dependencies
+      - name: Install dependencies # This step only runs if requirements.txt dependencies change
         run: |
-          python -m pip install --upgrade pip
-          pip install meta-ai-api
+          pip install -r requirements.txt
       - name: Run tip generator
         run: |
           python tip_generator.py
@@ -25,5 +25,5 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add tip_hashes.txt
-          git commit -m "Update tip hashes"
+          git commit -m "Update tip hashes with latest daily tip"
           git push origin main
