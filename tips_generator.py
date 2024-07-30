@@ -2,6 +2,9 @@ from meta_ai_api import MetaAI
 import hashlib
 import argparse
 import json
+import os
+import tweepy
+from facebook_sdk import FacebookSDK
 
 # Define command-line arguments
 parser = argparse.ArgumentParser(description='MetaAI DailyTips posted to socials')
@@ -14,6 +17,18 @@ args = parser.parse_args()
 prompt = args.prompt
 
 ai = MetaAI()
+
+# Twitter API credentials
+twitter_consumer_key = os.environ['TWITTER_CONSUMER_KEY']
+twitter_consumer_secret = os.environ['TWITTER_CONSUMER_SECRET']
+twitter_access_token = os.environ['TWITTER_ACCESS_TOKEN']
+twitter_access_token_secret = os.environ['TWITTER_ACCESS_TOKEN_SECRET']
+
+# Facebook API credentials
+facebook_app_id = os.environ['FACEBOOK_APP_ID']
+facebook_app_secret = os.environ['FACEBOOK_APP_SECRET']
+facebook_page_id = os.environ['FACEBOOK_PAGE_ID']
+facebook_page_access_token = os.environ['FACEBOOK_PAGE_ACCESS_TOKEN']
 
 def generate_tip(prompt):
   # Use the meta-ai-api library to generate a tip
@@ -40,6 +55,21 @@ def add_tip_hash(tip_hash, hash_file):
   with open(hash_file, 'a') as f:
     f.write(tip_hash + '\n')
 
+def post_to_twitter(tip):
+  # Authenticate with Twitter
+  auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
+  auth.set_access_token(twitter_access_token, twitter_access_token_secret)
+  api = tweepy.API(auth)
+  # Post the tip to Twitter
+  api.update_status(status=tip)
+
+def post_to_facebook(tip):
+  # Authenticate with Facebook
+  facebook = FacebookSDK(facebook_app_id, facebook_app_secret)
+  facebook.set_page_access_token(facebook_page_id, facebook_page_access_token)
+  # Post the tip to Facebook
+  facebook.post_page_feed(facebook_page_id, message=tip)
+
 def main():
   hash_file = 'tip_hashes.txt'
   max_attempts = 10
@@ -51,13 +81,14 @@ def main():
     if is_tip_unique(tip_hash, hash_file):
       add_tip_hash(tip_hash, hash_file)
       print(f"Tip of the day: {tip}")
+      post_to_twitter(tip)
+      post_to_facebook(tip)
       break
     else:
       print(f"Tip already exists! Attempt {attempts + 1}/{max_attempts}")
       attempts += 1
-      sleep(10) #Give a little time between AI queries if further searches are needed
   else:
-    print("Failed to generate a unique tip after 10 attempts. Exiting")
+    print("Failed to generate a unique tip after 10 attempts.")
 
 if __name__ == '__main__':
   main()
