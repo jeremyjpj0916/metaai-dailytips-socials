@@ -1,6 +1,8 @@
-import meta_ai_api
+from meta_ai_api import MetaAI
 import hashlib
 import argparse
+import json
+
 
 # Define command-line arguments
 parser = argparse.ArgumentParser(description='MetaAI DailyTips posted to socials')
@@ -13,10 +15,16 @@ args = parser.parse_args()
 # Use the dynamic arguments in your script
 prompt = args.prompt
 
+ai = MetaAI()
+
 
 def generate_tip(prompt):
   # Use the meta-ai-api library to generate a tip
-  tip = meta_ai_api.generate_text(prompt, max_length=2048)
+  response = ai.prompt(message=prompt)
+  # Parse the JSON data
+  data = json.loads(response)
+  # Extract the 'message' field
+  tip = data['message']
   return tip
 
 def get_tip_hash(tip):
@@ -35,8 +43,7 @@ def add_tip_hash(tip_hash, hash_file):
   with open(hash_file, 'a') as f:
   f.write(tip_hash + '\n')
   
-def main():
-  prompt = prompt
+if __name__ == '__main__':
   tip = generate_tip(prompt)
   tip_hash = get_tip_hash(tip)
   hash_file = 'tip_hashes.txt'
@@ -46,5 +53,4 @@ def main():
   else:
     print("Tip already exists!")
     
-if __name__ == '__main__':
-  main()
+
