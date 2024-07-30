@@ -2,13 +2,21 @@ from meta_ai_api import MetaAI
 import hashlib
 import argparse
 import json
-import os
 import tweepy
 from facebook_sdk import FacebookSDK
 
 # Define command-line arguments
 parser = argparse.ArgumentParser(description='MetaAI DailyTips posted to socials')
 parser.add_argument('--prompt', required=True, help='Prompt to help generate tip category')
+parser.add_argument('--twitter_consumer_key', required=True, help='twitter_consumer_key from X dev portal')
+parser.add_argument('--twitter_consumer_secret', required=True, help='twitter_consumer_secret from X dev portal')
+parser.add_argument('--twitter_access_token', required=True, help='twitter_access_token from X dev portal')
+parser.add_argument('--twitter_access_token_secret', required=True, help='twitter_access_token_secret from X dev portal')
+
+parser.add_argument('--facebook_app_id', required=True, help='')
+parser.add_argument('--facebook_app_secret', required=True, help='')
+parser.add_argument('--facebook_page_id', required=True, help='')
+parser.add_argument('--facebook_page_access_token', required=True, help='')
 
 # Parse command-line arguments
 args = parser.parse_args()
@@ -16,19 +24,19 @@ args = parser.parse_args()
 # Use the dynamic arguments in your script
 prompt = args.prompt
 
-ai = MetaAI()
-
 # Twitter API credentials
-twitter_consumer_key = os.environ['TWITTER_CONSUMER_KEY']
-twitter_consumer_secret = os.environ['TWITTER_CONSUMER_SECRET']
-twitter_access_token = os.environ['TWITTER_ACCESS_TOKEN']
-twitter_access_token_secret = os.environ['TWITTER_ACCESS_TOKEN_SECRET']
+twitter_consumer_key = args.twitter_consumer_key
+twitter_consumer_secret = args.twitter_consumer_secret
+twitter_access_token = args.twitter_access_token
+twitter_access_token_secret = args.twitter_access_token_secret
 
 # Facebook API credentials
-facebook_app_id = os.environ['FACEBOOK_APP_ID']
-facebook_app_secret = os.environ['FACEBOOK_APP_SECRET']
-facebook_page_id = os.environ['FACEBOOK_PAGE_ID']
-facebook_page_access_token = os.environ['FACEBOOK_PAGE_ACCESS_TOKEN']
+facebook_app_id = args.facebook_app_id
+facebook_app_secret = args.facebook_app_secret
+facebook_page_id = args.facebook_page_id
+facebook_page_access_token = args.facebook_page_access_token
+
+ai = MetaAI()
 
 def generate_tip(prompt):
   # Use the meta-ai-api library to generate a tip
@@ -87,6 +95,7 @@ def main():
     else:
       print(f"Tip already exists! Attempt {attempts + 1}/{max_attempts}")
       attempts += 1
+      sleep(10) # Sleep 10 seconds to not potentially hit rate limits with the AI gen between tips
   else:
     print("Failed to generate a unique tip after 10 attempts.")
 
