@@ -19,7 +19,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run tip generator
         env:
-          PROMPT: ${{ var.PROMPT }}
+          PROMPT: ${{ env.PROMPT }}
           FACEBOOK_EMAIL: ${{ secrets.FACEBOOK_EMAIL }}
           FACEBOOK_PASSWORD: ${{ secrets.FACEBOOK_PASSWORD }}
         run: |
