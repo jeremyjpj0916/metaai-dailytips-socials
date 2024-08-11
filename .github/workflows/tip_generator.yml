@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -18,12 +18,18 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Run tip generator
+        env:
+          PROMPT: ${{ secrets.PROMPT }}
+          FACEBOOK_EMAIL: ${{ secrets.FACEBOOK_EMAIL }}
+          FACEBOOK_PASSWORD: ${{ secrets.FACEBOOK_PASSWORD }}
         run: |
-          python tip_generator.py
-      - name: Update tip hashes file
+          python script.py --prompt "$PROMPT" --facebook_email "$FACEBOOK_EMAIL" --facebook_password "$FACEBOOK_PASSWORD"
+      - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.HUB_PAT }}
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add tip_hashes.txt
-          git commit -m "Update tip hashes with latest daily tip"
-          git push origin main
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add tips.csv upcoming_tips.html
+          git commit -m "Update tips.csv and upcoming_tips.html"
+          git push https://$HUB_PAT@github.com/metaai-dailytips-socials.git
