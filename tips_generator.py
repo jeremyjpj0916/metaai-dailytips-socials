@@ -8,10 +8,10 @@ import random
 # Define command-line arguments
 parser = argparse.ArgumentParser(description='MetaAI DailyTips posted to socials')
 parser.add_argument('--prompt', required=True, help='Prompt to help generate tip category')
-parser.add_argument('--twitter_consumer_key', required=True, help='twitter_consumer_key from X dev portal')
-parser.add_argument('--twitter_consumer_secret', required=True, help='twitter_consumer_secret from X dev portal')
-parser.add_argument('--twitter_access_token', required=True, help='twitter_access_token from X dev portal')
-parser.add_argument('--twitter_access_token_secret', required=True, help='twitter_access_token_secret from X dev portal')
+#parser.add_argument('--twitter_consumer_key', required=True, help='twitter_consumer_key from X dev portal')
+#parser.add_argument('--twitter_consumer_secret', required=True, help='twitter_consumer_secret from X dev portal')
+#parser.add_argument('--twitter_access_token', required=True, help='twitter_access_token from X dev portal')
+#parser.add_argument('--twitter_access_token_secret', required=True, help='twitter_access_token_secret from X dev portal')
 parser.add_argument('--facebook_email', required=True, help='Email for facebook auth')
 parser.add_argument('--facebook_password', required=True, help='Password for facebook auth')
 
@@ -22,10 +22,10 @@ args = parser.parse_args()
 prompt = args.prompt
 
 # Twitter API credentials
-twitter_consumer_key = args.twitter_consumer_key
-twitter_consumer_secret = args.twitter_consumer_secret
-twitter_access_token = args.twitter_access_token
-twitter_access_token_secret = args.twitter_access_token_secret
+#twitter_consumer_key = args.twitter_consumer_key
+#twitter_consumer_secret = args.twitter_consumer_secret
+#twitter_access_token = args.twitter_access_token
+#twitter_access_token_secret = args.twitter_access_token_secret
 
 # Facebook credentials
 facebook_email = args.facebook_email
@@ -73,7 +73,7 @@ def post_tip_and_update_csv():
     for row in rows:
         if row[3] == 'False':  # Find first unused tip
             tip_to_post = row
-            post_to_twitter(tip_to_post[1])
+            #post_to_twitter(tip_to_post[1])
             tip_to_post[3] = 'True'  # Mark tip as used
             with open('tips.csv', 'w', newline='') as csvfile:
                 writer = csv.writer(csvfile)
@@ -86,13 +86,13 @@ def post_tip_and_update_csv():
     print("No unused tips available.")
 
 # Function to post to Twitter
-def post_to_twitter(tip):
-    try:
-        api.update_status(status=tip)
-    except tweepy.TweepError as e:
-        print(f"Error posting to Twitter: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+#def post_to_twitter(tip):
+#    try:
+#        api.update_status(status=tip)
+#    except tweepy.TweepError as e:
+#        print(f"Error posting to Twitter: {e}")
+#    except Exception as e:
+#        print(f"An unexpected error occurred: {e}")
 
 # Function to generate HTML page
 def generate_html_page():
