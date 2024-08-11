@@ -95,10 +95,38 @@ def generate_html_page():
         reader = csv.reader(csvfile)
         rows = list(reader)
     upcoming_tips = [row for row in rows if not row[3]]
-    html = "<html><body><h1>Upcoming Health Tips</h1><ul>"
+    html = """
+    <html>
+    <head>
+        <title>Upcoming Health Tips</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            h1 {
+                color: #007bff;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+            li {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Upcoming Health Tips</h1>
+        <ul>
+    """
     for tip in upcoming_tips[:7]:
         html += f"<li>{tip[1]}</li>"
-    html += "</ul></body></html>"
+    html += """
+        </ul>
+    </body>
+    </html>
+    """
     with open('upcoming_tips.html', 'w') as htmlfile:
         htmlfile.write(html)
 
