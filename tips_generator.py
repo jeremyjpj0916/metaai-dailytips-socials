@@ -5,23 +5,33 @@ from meta_ai_api import MetaAI
 from datetime import date, timedelta
 import random
 
-# MetaAI API credentials
-meta_ai_email = "your_meta_ai_email"
-meta_ai_password = "your_meta_ai_password"
+# Define command-line arguments
+parser = argparse.ArgumentParser(description='MetaAI DailyTips posted to socials')
+parser.add_argument('--prompt', required=True, help='Prompt to help generate tip category')
+parser.add_argument('--twitter_consumer_key', required=True, help='twitter_consumer_key from X dev portal')
+parser.add_argument('--twitter_consumer_secret', required=True, help='twitter_consumer_secret from X dev portal')
+parser.add_argument('--twitter_access_token', required=True, help='twitter_access_token from X dev portal')
+parser.add_argument('--twitter_access_token_secret', required=True, help='twitter_access_token_secret from X dev portal')
+parser.add_argument('--facebook_email', required=True, help='Email for facebook auth')
+parser.add_argument('--facebook_password', required=True, help='Password for facebook auth')
+
+# Parse command-line arguments
+args = parser.parse_args()
+
+# Use the dynamic arguments in your script
+prompt = args.prompt
 
 # Twitter API credentials
-twitter_consumer_key = "your_twitter_consumer_key"
-twitter_consumer_secret = "your_twitter_consumer_secret"
-twitter_access_token = "your_twitter_access_token"
-twitter_access_token_secret = "your_twitter_access_token_secret"
+twitter_consumer_key = args.twitter_consumer_key
+twitter_consumer_secret = args.twitter_consumer_secret
+twitter_access_token = args.twitter_access_token
+twitter_access_token_secret = args.twitter_access_token_secret
 
-# Set up MetaAI API
-ai = MetaAI(fb_email=meta_ai_email, fb_password=meta_ai_password)
+# Facebook credentials
+facebook_email = args.facebook_email
+facebook_password = args.facebook_password
 
-# Set up Twitter API
-auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
-auth.set_access_token(twitter_access_token, twitter_access_token_secret)
-api = tweepy.API(auth)
+ai = MetaAI(fb_email=facebook_email, fb_password=facebook_password)
 
 # Function to check if a hash already exists in the CSV file
 def check_existing_hash(hash):
