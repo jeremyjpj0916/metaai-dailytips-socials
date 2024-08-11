@@ -34,9 +34,9 @@ facebook_password = args.facebook_password
 ai = MetaAI(fb_email=facebook_email, fb_password=facebook_password)
 
 # Set up Twitter API
-auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
-auth.set_access_token(twitter_access_token, twitter_access_token_secret)
-api = tweepy.API(auth)
+#auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
+#auth.set_access_token(twitter_access_token, twitter_access_token_secret)
+#api = tweepy.API(auth)
 
 # Function to generate and save tips to CSV file
 def generate_and_save_tips(prompt):
