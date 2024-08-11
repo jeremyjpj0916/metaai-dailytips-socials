@@ -87,7 +87,12 @@ def post_tip_and_update_csv():
 
 # Function to post to Twitter
 def post_to_twitter(tip):
-    api.update_status(status=tip)
+    try:
+        api.update_status(status=tip)
+    except tweepy.TweepError as e:
+        print(f"Error posting to Twitter: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 # Function to generate HTML page
 def generate_html_page():
