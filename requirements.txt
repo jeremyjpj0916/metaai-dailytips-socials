@@ -2,4 +2,3 @@ meta-ai-api==1.2.1
 argparse==1.4.0
 json==2.0.9
 tweepy==4.12.1
-facebook-sdk==3.1.1
