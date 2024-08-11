@@ -52,18 +52,30 @@ def check_existing_hash(hash):
 
 # Function to generate and save tips to CSV file
 def generate_and_save_tips(prompt):
-    response = ai.prompt(message=prompt)
-    data = json.loads(response)
-    csv_data = data['message']
-    tips = []
-    for line in csv_data.splitlines():
-        if len(line.split(',')) == 4:  # Check if line is in CSV format
-            date_generated, tip, hash, used = line.split(',')
-            if not check_existing_hash(hash):  # Check if hash already exists
-                tips.append([date_generated, tip, hash, used])
-    with open('tips.csv', 'a', newline='') as csvfile:  # Append to file instead of overwriting
-        writer = csv.writer(csvfile)
-        writer.writerows(tips)
+    try:
+        response = ai.prompt(message=prompt)
+        data = json.loads(response)
+        csv_data = data['message']
+        tips = []
+        existing_hashes = set()
+        with open('tips.csv', 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                existing_hashes.add(row[2])  # Add hashes from tips.csv to set
+        for line in csv_data.splitlines():
+            if len(line.split(',')) == 4:  # Check if line is in CSV format
+                date_generated, tip, hash, used = line.split(',')
+                if hash not in existing_hashes:  # Check if hash is not in tips.csv
+                    tips.append([date_generated, tip, hash, used])
+        with open('tips.csv', 'a', newline='') as csvfile:  # Append to file instead of overwriting
+            writer = csv.writer(csvfile)
+            writer.writerows(tips)
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON response: {e}")
+    except KeyError as e:
+        print(f"Error accessing JSON data: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 # Function to post a tip to Twitter and update CSV file
 def post_tip_and_update_csv():
