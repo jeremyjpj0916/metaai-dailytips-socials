@@ -38,18 +38,6 @@ auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
 auth.set_access_token(twitter_access_token, twitter_access_token_secret)
 api = tweepy.API(auth)
 
-# Function to check if a hash already exists in the CSV file
-def check_existing_hash(hash):
-    try:
-        with open('tips.csv', 'r') as csvfile:
-            reader = csv.reader(csvfile)
-            for row in reader:
-                if row[2] == hash:
-                    return True
-    except FileNotFoundError:
-        pass
-    return False
-
 # Function to generate and save tips to CSV file
 def generate_and_save_tips(prompt):
     try:
