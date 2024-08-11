@@ -70,18 +70,20 @@ def post_tip_and_update_csv():
     with open('tips.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         rows = list(reader)
-    unused_tips = [row for row in rows if row[3] == 'False']  # Find unused tips
-    if unused_tips:
-        tip_to_post = unused_tips[0]
-        post_to_twitter(tip_to_post[1])
-        tip_to_post[3] = 'True'  # Mark tip as used
-        rows[rows.index(tip_to_post)] = tip_to_post  # Update the original list
-        with open('tips.csv', 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerows(rows)  # Write updated rows back to file
-        return  # Return after posting one tip
-    else:
-        print("No unused tips available.")
+    for row in rows:
+        if row[3] == 'False':  # Find first unused tip
+            tip_to_post = row
+            post_to_twitter(tip_to_post[1])
+            tip_to_post[3] = 'True'  # Mark tip as used
+            with open('tips.csv', 'w', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                for r in rows:
+                    if r == tip_to_post:
+                        writer.writerow(tip_to_post)  # Write updated row
+                    else:
+                        writer.writerow(r)  # Write unchanged rows
+            return  # Return after posting one tip
+    print("No unused tips available.")
 
 # Function to post to Twitter
 def post_to_twitter(tip):
