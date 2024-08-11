@@ -132,7 +132,6 @@ def generate_html_page():
 
 # Main function
 def main():
-    prompt = "Generate 10 interesting and insightful health tips of differing sentence lengths with no added information in your next response in a csv parsable format of date_generated,tip,hash,used. date_generated in mm/dd/yyyy format. hash should be the hash value of the tip to be inserted into the csv file using blak2b. used is just a true/false boolean field to designate if its been used before"
     generate_and_save_tips(prompt)
     post_tip_and_update_csv()
     generate_html_page()
