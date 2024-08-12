@@ -23,7 +23,7 @@ jobs:
           FACEBOOK_EMAIL: ${{ secrets.FACEBOOK_EMAIL }}
           FACEBOOK_PASSWORD: ${{ secrets.FACEBOOK_PASSWORD }}
         run: |
-          python script.py --prompt "$PROMPT" --facebook_email "$FACEBOOK_EMAIL" --facebook_password "$FACEBOOK_PASSWORD"
+          python tips_generator.py --prompt "$PROMPT" --facebook_email "$FACEBOOK_EMAIL" --facebook_password "$FACEBOOK_PASSWORD"
       - name: Commit changes
         env:
           HUB_PAT: ${{ secrets.HUB_PAT }}
