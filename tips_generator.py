@@ -46,8 +46,7 @@ ai = MetaAI()
 def generate_and_save_tips(prompt):
     try:
         response = ai.prompt(message=prompt)
-        data = json.loads(response)
-        csv_data = data['message']
+        csv_data = response['message']
         tips = []
         existing_hashes = set()
         with open('tips.csv', 'r') as csvfile:
@@ -57,15 +56,12 @@ def generate_and_save_tips(prompt):
         for line in csv_data.splitlines():
             if len(line.split(',')) == 4:  # Check if line is in CSV format
                 date_generated, tip, hash, used = line.split(',')
-                if hash not in existing_hashes:  # Check if hash is not in tips.csv
-                    tips.append([date_generated, tip, hash, used])
+                if hash.strip().strip('"').strip() not in existing_hashes:  # Check if hash is not in tips.csv
+                    tips.append([date_generated.strip().strip('"'), tip.strip().strip('"'), hash.strip().strip('"'), "False"])
         with open('tips.csv', 'a', newline='') as csvfile:  # Append to file instead of overwriting
             writer = csv.writer(csvfile)
-            writer.writerows(tips)
-    except json.JSONDecodeError as e:
-        print(f"Error parsing JSON response: {e}")
-    except KeyError as e:
-        print(f"Error accessing JSON data: {e}")
+            for tip in tips:
+                writer.writerow([field.strip('"') for field in tip])
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
@@ -103,7 +99,7 @@ def generate_html_page():
     with open('tips.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         rows = list(reader)
-    upcoming_tips = [row for row in rows if not row[3]]
+    upcoming_tips = [row for row in rows if row[3] == "False"]
     html = """
     <html>
     <head>
