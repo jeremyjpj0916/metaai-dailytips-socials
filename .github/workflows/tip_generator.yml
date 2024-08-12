@@ -32,4 +32,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git add tips.csv upcoming_tips.html
           git commit -m "Update tips.csv and upcoming_tips.html"
-          git push https://$HUB_PAT@github.com/metaai-dailytips-socials.git
+          git push https://$HUB_PAT@github.com/jeremyjpj0916/metaai-dailytips-socials.git
