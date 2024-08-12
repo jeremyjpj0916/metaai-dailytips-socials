@@ -2,7 +2,7 @@
 A program designed to manage social media engagement posts for businesses
 
 
-Interesting, seems metaai has blocked github action runner source ips from executing the AI. Alternatively lets clone it down for now and test locally:
+Interesting, seems meta ai has blocked github action runner source ips from executing the AI. Alternatively lets clone it down for now and test locally:
 
 I also disabled the twitter and facebook credential related stuff for now for simplicity of demo purposes. Running python script locally still works for me
 
