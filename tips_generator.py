@@ -32,7 +32,9 @@ prompt = args.prompt
 facebook_email = args.facebook_email
 facebook_password = args.facebook_password
 
-ai = MetaAI(fb_email=facebook_email, fb_password=facebook_password)
+#Username/Pass functionality seems busted.
+#ai = MetaAI(fb_email=facebook_email, fb_password=facebook_password)
+ai = MetaAI()
 
 # Set up Twitter API
 #auth = tweepy.OAuthHandler(twitter_consumer_key, twitter_consumer_secret)
