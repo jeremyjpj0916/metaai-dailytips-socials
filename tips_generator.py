@@ -5,6 +5,7 @@ import tweepy
 from meta_ai_api import MetaAI
 from datetime import date, timedelta
 import random
+import json
 
 # Define command-line arguments
 parser = argparse.ArgumentParser(description='MetaAI DailyTips posted to socials')
