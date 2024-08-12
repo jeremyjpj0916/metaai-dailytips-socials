@@ -25,6 +25,7 @@ jobs:
         run: |
           python tips_generator.py --prompt "$PROMPT" --facebook_email "$FACEBOOK_EMAIL" --facebook_password "$FACEBOOK_PASSWORD"
       - name: Commit changes
+        if: success()
         env:
           HUB_PAT: ${{ secrets.HUB_PAT }}
         run: |
