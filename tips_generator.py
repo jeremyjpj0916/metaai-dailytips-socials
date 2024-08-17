@@ -14,8 +14,8 @@ parser.add_argument('--prompt', required=True, help='Prompt to help generate tip
 #parser.add_argument('--twitter_consumer_secret', required=True, help='twitter_consumer_secret from X dev portal')
 #parser.add_argument('--twitter_access_token', required=True, help='twitter_access_token from X dev portal')
 #parser.add_argument('--twitter_access_token_secret', required=True, help='twitter_access_token_secret from X dev portal')
-parser.add_argument('--facebook_email', required=True, help='Email for facebook auth')
-parser.add_argument('--facebook_password', required=True, help='Password for facebook auth')
+#parser.add_argument('--facebook_email', required=True, help='Email for facebook auth')
+#parser.add_argument('--facebook_password', required=True, help='Password for facebook auth')
 
 # Parse command-line arguments
 args = parser.parse_args()
@@ -30,8 +30,8 @@ prompt = args.prompt
 #twitter_access_token_secret = args.twitter_access_token_secret
 
 # Facebook credentials
-facebook_email = args.facebook_email
-facebook_password = args.facebook_password
+#facebook_email = args.facebook_email
+#facebook_password = args.facebook_password
 
 #Username/Pass functionality seems busted.
 #ai = MetaAI(fb_email=facebook_email, fb_password=facebook_password)
