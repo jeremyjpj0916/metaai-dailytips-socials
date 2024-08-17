@@ -5,13 +5,13 @@ A program designed to manage social media engagement posts for businesses
 ```mermaid
 
 graph TD
-    A["Cron Schedule"] -->|Triggers|> B["GitHub Actions Workflow"]
-    B -->|Runs|> C["Python Script"]
-    C -->|Fetches Data|> D["Meta AI API"]
-    D -->|Returns Data|> C
-    C -->|Generates Tips|> E["Daily Tips"]
-    E -->|Posts Tips|> F["Social Media Platforms"]
-    F -->|Engages Audience|> G["Users"]
+    A["Cron Schedule"] --> B["GitHub Actions Workflow"]
+    B --> C["Python Script"]
+    C --> D["Meta AI API"]
+    D --> C
+    C --> E["Daily Tips"]
+    E --> F["Social Media Platforms"]
+    F --> G["Users"]
 ```
 
 
