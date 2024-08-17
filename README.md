@@ -34,6 +34,7 @@ column -t -s , tips.csv
 ```
 
 ```csv
+
 date_generated,tip,hash,used
 08/11/2024,Drink water as soon as you wake up to rehydrate after a night of sleep,1a79a4f0dd8a8b095a8f7dce6d3a9f6f9a3e3b5f,True
 08/11/2024,Exercise for at least 30 minutes a day to improve cardiovascular health,f3a5f9f4c2d1f4a9e8f4f1e2a3f5f7f9f,True
