@@ -72,3 +72,6 @@ Human readable HTML page detailing next social media tips that will be posted fo
 
 ![image](https://github.com/user-attachments/assets/dceaeb39-2a26-428c-91ac-106c15fa90d5)
 
+Special thanks to underlying library used:
+https://github.com/Strvm/meta-ai-api
+
