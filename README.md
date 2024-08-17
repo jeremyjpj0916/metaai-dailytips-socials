@@ -1,5 +1,18 @@
 # metaai-dailytips-socials
+
 A program designed to manage social media engagement posts for businesses
+
+```mermaid
+
+graph TD
+    A["Cron Schedule"] -->|Triggers|> B["GitHub Actions Workflow"]
+    B -->|Runs|> C["Python Script"]
+    C -->|Fetches Data|> D["Meta AI API"]
+    D -->|Returns Data|> C
+    C -->|Generates Tips|> E["Daily Tips"]
+    E -->|Posts Tips|> F["Social Media Platforms"]
+    F -->|Engages Audience|> G["Users"]
+```
 
 
 Interesting, seems meta ai has blocked github action runner source ips from executing the AI. Alternatively lets clone it down for now and test locally:
