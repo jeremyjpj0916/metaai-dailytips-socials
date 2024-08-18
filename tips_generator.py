@@ -60,7 +60,7 @@ def generate_and_save_tips(prompt):
                 existing_hashes.add(row[2])  # Add hashes from tips.csv to set
         for line in csv_data.splitlines():
             if len(line.split(',')) == 4:  # Check if line is in CSV format
-                date_generated, tip, used = line.split(',')
+                date_generated, tip = line.split(',')
                 cleaned_date = date_generated.strip().strip('"')
                 cleaned_tip = tip.strip().strip('"')
                 hash_of_tip = generate_hash(cleaned_tip)
