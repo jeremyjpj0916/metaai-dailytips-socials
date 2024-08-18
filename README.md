@@ -35,36 +35,28 @@ column -t -s , tips.csv
 
 Output:
 ```
-date_generated  tip                                                                                        hash                                                              used
-08/11/2024      Drink water as soon as you wake up to rehydrate after a night of sleep                     1a79a4f0dd8a8b095a8f7dce6d3a9f6f9a3e3b5f                          True
-08/11/2024      Exercise for at least 30 minutes a day to improve cardiovascular health                    f3a5f9f4c2d1f4a9e8f4f1e2a3f5f7f9f                                 True
-08/11/2024      Practice stress-reducing techniques like meditation or deep breathing                      f4a9e8f4f1e2a3f5f7f9f3a5f9f4c2                                    True
-08/11/2024      Limit screen time before bed to improve sleep quality                                      f1e2a3f5f7f9f3a5f9f4c2d1f4a9                                      True
-08/11/2024      Incorporate healthy fats like nuts and avocado into your diet                              a9f7e6d3a9f6f9a3e3b5f1a9f7e6d                                     False
-08/11/2024      Listen to your body and take rest days when needed to avoid burnout                        e8f4f1e2a3f5f7f9f3a5f9f4c2d1f                                     False
-08/11/2024      Drink water as soon as you wake up to rehydrate after a night of sleep.                    d41d8cd98f00b204e9800998ecf8427e                                  False
-08/11/2024      Exercise for at least 30 minutes a day to improve cardiovascular health.                   81dc9bdb52d04dc20036dbd8313ed055                                  False
-08/11/2024      Get at least 7-8 hours of sleep each night to aid in muscle recovery.                      4b2277772437681a2b9443d5e5e8f3f8                                  False
-08/11/2024      Practice stress-reducing techniques like meditation or deep breathing.                     16896e0d213f3e7443f718d2e9a9b8f6                                  False
-08/11/2024      Limit screen time to reduce eye strain and improve sleep quality.                          d7a8fbb307d7809469ca9abcb0082e4f                                  False
-08/11/2024      Incorporate strength training into your workout routine to improve bone density.           ef2d127de9b5034e7b4748b4d8a15f4f                                  False
-08/11/2024      Stay hydrated by drinking at least 8 cups (64 oz) of water per day.                        a1f4b5e1b1e1f5f3f815f5e5f5f5f5f                                   False
-08/11/2024      Take breaks to stretch and move throughout the day to reduce sedentary behavior.           f7f5f5f5f5f5f5f5f5f5f5f5f5f5f5f                                   False
-08/11/2024      Listen to your body and rest when needed to avoid injury or burnout.                       9f86d081884c7d659a2feaa0c55ad024                                  False
-08/11/2024      Exercise for at least 30 minutes a day to improve cardiovascular health.                   c2d37dcb4f0436a8f6e3b3a5c25f2d8f                                  False
-08/11/2024      Aim for 7-8 hours of sleep each night to help your body repair and recharge.               8f2f6f8b5e2a5c25f2d8f3a5c25f2d8                                   False
-08/11/2024      Take breaks to stretch and move throughout the day to reduce the risk of chronic disease.  a5c25f2d8f3a5c25f2d8f3a5c25f2                                     False
-08/11/2024      Get outside and soak up some vitamin D from natural sunlight to boost your mood.           5f2d8f3a5c25f2d8f3a5c25f2d8f                                      False
-08/11/2024      Limit screen time before bed to improve sleep quality and duration.                        d8f3a5c25f2d8f3a5c25f2d8f3a5                                      False
-08/11/2024      Stay mentally active and challenged to build cognitive reserve and reduce dementia risk.   c25f2d8f3a5c25f2d8f3a5c25f2d                                      False
-08/16/2024      Drink water as soon as you wake up to rehydrate after a night of sleep                     e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  False
-08/16/2024      Aim for 7-8 hours of sleep each night to help regulate stress hormones                     4b1a8bf7997a46a6b2e3b9f1f0d1d2e74a9c4f6d2f4e1a8b                  False
-08/16/2024      Take a 10-minute walk outside during your lunch break to boost vitamin D levels            6f8a0a934f7a4c2b8a2f1f0d1d2e74a9c4f6d2f4e1a8b                     False
-08/16/2024      Practice deep breathing exercises to reduce stress and anxiety                             4b1a8bf7997a46a6b2e3b9f1f0d1d2e74a9c4f6d2f4e1a8b                  False
-08/16/2024      Incorporate strength training into your workout routine to improve bone density            6f8a0a934f7a4c2b8a2f1f0d1d2e74a9c4f6d2f4e1a8b                     False
-08/16/2024      Limit screen time before bed to improve sleep quality                                      4b1a8bf7997a46a6b2e3b9f1f0d1d2e74a9c4f6d2f4e1a8b                  False
-08/16/2024      Stay hydrated by drinking at least 8 cups (64 oz) of water per day                         6f8a0a934f7a4c2b8a2f1f0d1d2e74a9c4f6d2f4e1a8b                     False
-08/16/2024      Take breaks to stretch and move throughout the day to reduce sedentary behavior            e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  False
+date_generated  tip                                                                                                hash                              used
+08/17/2024      Stay hydrated by drinking at least 8 cups of water a day.                                          9d9c2efa2939aaec5c7225a4b9d52b81  True
+08/17/2024      Exercise for 30 minutes daily to boost mood and energy.                                            19e5bc18846c444b748618431750aa3a  True
+08/17/2024      Aim for 7-9 hours of sleep each night to support immune function.                                  62ea9022954edcea63dcaea66d1f6b90  True
+08/17/2024      Incorporate stress-reducing activities like meditation or yoga into your routine.                  458dd81b3d927e45623caa5626a671e7  False
+08/17/2024      Get regular check-ups and health screenings to stay on top of your health.                         31873032d6c8ea029ee66cfafc297f7b  False
+08/17/2024      Take breaks and move throughout the day to reduce the risk of chronic disease.                     a896c03bef7453f9f856d6b62a5e26af  False
+08/17/2024      Limit screen time before bed to improve sleep quality and duration.                                6d8207300e66f0095c0f3c9b730a3283  False
+08/17/2024      Stay hydrated by drinking at least 8 cups of water per day.                                        c28c5d51236d47489fd48e98f91b30a4  False
+08/17/2024      Exercise for 30 minutes daily to reduce stress and anxiety.                                        40c2c3ea76c7fb4790615e6bc7b41fb2  False
+08/17/2024      Practice mindfulness and meditation for mental clarity.                                            6c4ae5d02d09f90971f0431eba281caf  False
+08/17/2024      Limit screen time before bed to improve sleep quality.                                             ddd75f88a501a02db54fd0821d68a08a  False
+08/17/2024      Incorporate strength training into your workout routine.                                           6103b69ec9ff6f669cfad9efdadfaf4a  False
+08/17/2024      Listen to your body and take rest days when needed.                                                09c843966793eb8087d9c94392812dd9  False
+08/17/2024      Stay connected with friends and family for emotional support.                                      a7297d1cea9254c39c97acad83a2117f  False
+08/17/2024      Consult a healthcare professional before starting new supplements.                                 e1fa3faf2b16e1ea28b13d6744c8069e  False
+08/17/2024      Drink plenty of water throughout the day to stay hydrated and maintain focus.                      d68cea14c0360f125c318caabcfd6d01  False
+08/17/2024      Regular exercise can reduce symptoms of anxiety and depression by releasing endorphins.            7b2642a5d329301954a65cdb78beb599  False
+08/17/2024      Aim for 7-8 hours of sleep each night to allow your body to repair and recharge.                   a127c8051ec29439ff0d0fe445ee0e0b  False
+08/17/2024      Incorporate stress-reducing activities like meditation or deep breathing into your daily routine.  ea0af76f66431d83a34769a1b749cda1  False
+08/17/2024      Stay connected with friends and family to support mental health and well-being.                    9f696c85c065ffdf926ddff32d437cba  False
+08/17/2024      Take breaks and prioritize self-care to avoid burnout and maintain productivity.                   4a4b59fe661655b01fdbd1d1adfd517f  False
 ```
 
 
