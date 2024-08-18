@@ -1,6 +1,7 @@
 import csv
 import argparse
 import tweepy
+import hashlib
 from meta_ai_api import MetaAI
 from datetime import date, timedelta
 import random
@@ -41,6 +42,11 @@ ai = MetaAI()
 #auth.set_access_token(twitter_access_token, twitter_access_token_secret)
 #api = tweepy.API(auth)
 
+def generate_hash(tip):
+    # Use Blake2b hashing instead of MD5
+    hash_object = hashlib.blake2b(tip.encode('utf-8'))
+    return hash_object.hexdigest()
+
 # Function to generate and save tips to CSV file
 def generate_and_save_tips(prompt):
     try:
@@ -54,9 +60,12 @@ def generate_and_save_tips(prompt):
                 existing_hashes.add(row[2])  # Add hashes from tips.csv to set
         for line in csv_data.splitlines():
             if len(line.split(',')) == 4:  # Check if line is in CSV format
-                date_generated, tip, hash, used = line.split(',')
-                if hash.strip().strip('"').strip() not in existing_hashes:  # Check if hash is not in tips.csv
-                    tips.append([date_generated.strip().strip('"'), tip.strip().strip('"'), hash.strip().strip('"'), "False"])
+                date_generated, tip, used = line.split(',')
+                cleaned_date = date_generated.strip().strip('"')
+                cleaned_tip = tip.strip().strip('"')
+                hash_of_tip = generate_hash(cleaned_tip)
+                if hash_of_tip not in existing_hashes:  # Check if hash is not in tips.csv
+                    tips.append([cleaned_date, cleaned_tip, hash_of_tip, "False"])
         with open('tips.csv', 'a', newline='') as csvfile:  # Append to file instead of overwriting
             writer = csv.writer(csvfile)
             for tip in tips:
