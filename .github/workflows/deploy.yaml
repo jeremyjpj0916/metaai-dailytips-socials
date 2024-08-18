@@ -1,4 +1,4 @@
-name: Deploy to AWS and run lambda
+name: Deploy to AWS
 
 on:
   push:
@@ -19,18 +19,25 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Install dependencies
+      - name: Install Terraform
         run: |
-          pip install -r requirements.txt
+          sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get update && sudo apt-get install -y terraform
 
-      - name: Create Lambda function payload
+      - name: Initialize Terraform
+        run: |
+          terraform init
+
+      - name: Apply Terraform configuration
+        run: |
+          terraform apply -auto-approve
+
+      - name: Zip Lambda function code
         run: |
           zip tips_generator.zip tips_generator.py tips.csv upcoming_tips.html
 
-      - name: Update Lambda function code
+      - name: Upload Lambda function code to S3
         run: |
-          aws lambda update-function-code --function-name metaai-dailytips-socials --zip-file fileb://tips_generator.zip
-
-      - name: Invoke Lambda function
-        run: |
-          aws lambda invoke --function-name metaai-dailytips-socials --payload '{}' output.txt
+          aws s3 cp tips_generator.zip s3://metaai-dailytips-socials/tips_generator.zip
