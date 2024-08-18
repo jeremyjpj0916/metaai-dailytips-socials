@@ -62,7 +62,8 @@ date_generated  tip                                                             
 
 Human readable HTML page detailing next social media tips that will be posted for human review days prior:
 
-![image](https://github.com/user-attachments/assets/dceaeb39-2a26-428c-91ac-106c15fa90d5)
+![image](https://github.com/user-attachments/assets/e3d3566b-c0e2-4902-8f86-fcd9ff5190ab)
+
 
 Special thanks to underlying library used:
 https://github.com/Strvm/meta-ai-api
