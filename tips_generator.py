@@ -57,7 +57,7 @@ def generate_and_save_tips(prompt):
     try:
         response = ai.prompt(message=prompt)
         csv_data = response['message']
-        print("FB AI Response" + csv_data)
+        #print("FB AI Response: " + csv_data)
         tips = []
         existing_hashes = set()
         with open('tips.csv', 'r') as csvfile:
