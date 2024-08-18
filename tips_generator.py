@@ -42,9 +42,14 @@ ai = MetaAI()
 #auth.set_access_token(twitter_access_token, twitter_access_token_secret)
 #api = tweepy.API(auth)
 
-def generate_hash(tip):
+def generate_hash_blake2b(tip):
     # Use Blake2b hashing instead of MD5
     hash_object = hashlib.blake2b(tip.encode('utf-8'))
+    return hash_object.hexdigest()
+
+def generate_hash_md5(tip):
+    # Use Blake2b hashing instead of MD5
+    hash_object = hashlib.md5(tip.encode('utf-8'))
     return hash_object.hexdigest()
 
 # Function to generate and save tips to CSV file
@@ -52,6 +57,7 @@ def generate_and_save_tips(prompt):
     try:
         response = ai.prompt(message=prompt)
         csv_data = response['message']
+        print("FB AI Response" + csv_data)
         tips = []
         existing_hashes = set()
         with open('tips.csv', 'r') as csvfile:
@@ -59,11 +65,11 @@ def generate_and_save_tips(prompt):
             for row in reader:
                 existing_hashes.add(row[2])  # Add hashes from tips.csv to set
         for line in csv_data.splitlines():
-            if len(line.split(',')) == 4:  # Check if line is in CSV format
+            if len(line.split(',')) == 2:  # Check if line is in CSV format
                 date_generated, tip = line.split(',')
                 cleaned_date = date_generated.strip().strip('"')
                 cleaned_tip = tip.strip().strip('"')
-                hash_of_tip = generate_hash(cleaned_tip)
+                hash_of_tip = generate_hash_md5(cleaned_tip)
                 if hash_of_tip not in existing_hashes:  # Check if hash is not in tips.csv
                     tips.append([cleaned_date, cleaned_tip, hash_of_tip, "False"])
         with open('tips.csv', 'a', newline='') as csvfile:  # Append to file instead of overwriting
